@@ -1,0 +1,7 @@
+button:active {
+  transform: scale(0.98);
+}
+
+button:hover {
+  filter: brightness(1.15);
+}

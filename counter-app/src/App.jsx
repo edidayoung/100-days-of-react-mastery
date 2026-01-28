@@ -3,8 +3,12 @@ import { useState } from "react";
 export default function App() {
   const [count, setCount] = useState(0);
 
-  const increase = () => setCount((c) => c + 1);
-  const decrease = () => setCount((c) => c - 1);
+  // ✅ NEW: step state
+  const [step, setStep] = useState(1);
+
+  // ✅ UPDATED: use step instead of 1
+  const increase = () => setCount((c) => c + step);
+  const decrease = () => setCount((c) => c - step);
   const reset = () => setCount(0);
 
   const isPositive = count > 0;
@@ -45,6 +49,28 @@ export default function App() {
           </div>
         </div>
 
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "1fr 1fr 1fr",
+            gap: 12,
+            marginTop: 14,
+          }}
+        >
+          {[1, 5, 10].map((value) => (
+            <button
+              key={value}
+              onClick={() => setStep(value)}
+              style={{
+                ...styles.btn,
+                ...(step === value ? styles.btnPrimary : styles.btnGhost),
+              }}
+            >
+              Step +{value}
+            </button>
+          ))}
+        </div>
+        
         <div style={styles.buttons}>
           <button style={{ ...styles.btn, ...styles.btnGhost }} onClick={decrease}>
             − Decrease
@@ -61,7 +87,7 @@ export default function App() {
 
         <div style={styles.footer}>
           <p style={styles.footerText}>
-            Tip: Try going negative.
+            Tip: Try going negative. (Current step: {step})
           </p>
         </div>
       </div>

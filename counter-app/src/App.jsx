@@ -2,11 +2,7 @@ import { useState } from "react";
 
 export default function App() {
   const [count, setCount] = useState(0);
-
-  // ✅ NEW: step state
   const [step, setStep] = useState(1);
-
-  // ✅ UPDATED: use step instead of 1
   const increase = () => setCount((c) => c + step);
   const decrease = () => setCount((c) => c - step);
   const reset = () => setCount(0);
@@ -70,7 +66,7 @@ export default function App() {
             </button>
           ))}
         </div>
-        
+
         <div style={styles.buttons}>
           <button style={{ ...styles.btn, ...styles.btnGhost }} onClick={decrease}>
             − Decrease
